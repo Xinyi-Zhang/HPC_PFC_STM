@@ -11,30 +11,30 @@ mkdir([global_path,local_path]);
 for nsub = [2:5 7:10 12:17]
     for nsession=1:2
     output_table=RSA_get_result_table_2nd(nsub,nsession);  % create_volumn_table_each_session_mdf_fsl   create_volumn_table_each_session_walking_fsl
-    count_trialtype =  length(output_table(:,1));% output_tableµÄĞĞÊı£¬ÊÔ´ÎÀàĞÍ
+    count_trialtype =  length(output_table(:,1));% output_tableçš„è¡Œæ•°ï¼Œè¯•æ¬¡ç±»å‹
     %  count_trialtype=64;
-    spherec_coordinate = sphericalRelativeRoi(6,[2 2 2]);%»­Çò£¬ËäÈ»²»ÖªµÀÕâ¼¸¸ö²ÎÊıÊÇÉ¶ÒâË¼
+    spherec_coordinate = sphericalRelativeRoi(6,[2 2 2]);%ç”»çƒï¼Œè™½ç„¶ä¸çŸ¥é“è¿™å‡ ä¸ªå‚æ•°æ˜¯å•¥æ„æ€
     mask_brain = output_table{1,1};
-    [fir_di, sec_di, thi_di] = size(mask_brain);%ÈıÎ¬Êı×é
-    [d1, d2, d3] = ind2sub([fir_di, sec_di, thi_di],find(~isnan(mask_brain)));%ÕÒµ½²»Îª0µÄvoxelµÄÏÂ±ê
+    [fir_di, sec_di, thi_di] = size(mask_brain);%ä¸‰ç»´æ•°ç»„
+    [d1, d2, d3] = ind2sub([fir_di, sec_di, thi_di],find(~isnan(mask_brain)));%æ‰¾åˆ°ä¸ä¸º0çš„voxelçš„ä¸‹æ ‡
     voxel_array = [d1, d2, d3];
-    count_voxel = length(voxel_array);%²»Îª0µÄvoxelµÄÊıÁ¿£¬lengthÈ¡µÄÊÇËùÓĞÎ¬¶ÈÖĞ×î´óµÄÄÇ¸ö
-    corr_3d_array = nan(count_trialtype, count_trialtype, count_voxel);%Õâ¸ö²ÅÊÇ×îºóÄÇ¸ö3d¾ØÕó
+    count_voxel = length(voxel_array);%ä¸ä¸º0çš„voxelçš„æ•°é‡ï¼Œlengthå–çš„æ˜¯æ‰€æœ‰ç»´åº¦ä¸­æœ€å¤§çš„é‚£ä¸ª
+    corr_3d_array = nan(count_trialtype, count_trialtype, count_voxel);%è¿™ä¸ªæ‰æ˜¯æœ€åé‚£ä¸ª3dçŸ©é˜µ
     sphere_voxel_number = nan(count_voxel,1);
     
-    %Ã¿¸övoxelµÄÃ¿¸öÊÔ´ÎµÄbetaºÍÆäËüËùÓĞ64¸öbeta×öÏà¹Ø
+    %æ¯ä¸ªvoxelçš„æ¯ä¸ªè¯•æ¬¡çš„betaå’Œå…¶å®ƒæ‰€æœ‰64ä¸ªbetaåšç›¸å…³
     
-    for voxel_index = 1:count_voxel %¶ÔÓÚÃ¿Ò»¸övoxel
-        spherec = repmat(voxel_array(voxel_index,:), size(spherec_coordinate,1), 1) + spherec_coordinate;%ÕâÊÇÄÇ¸öÇò£¬ÏÂÃæÊÇ±ß½çµÄ´¦Àí£¬ÕâÁ½¾ä»°¿ÉÒÔÖ±½Ó³­
+    for voxel_index = 1:count_voxel %å¯¹äºæ¯ä¸€ä¸ªvoxel
+        spherec = repmat(voxel_array(voxel_index,:), size(spherec_coordinate,1), 1) + spherec_coordinate;%è¿™æ˜¯é‚£ä¸ªçƒï¼Œä¸‹é¢æ˜¯è¾¹ç•Œçš„å¤„ç†ï¼Œè¿™ä¸¤å¥è¯å¯ä»¥ç›´æ¥æŠ„
         [row_ind, col_ind] = find(spherec(:,1) < 1 | spherec(:,2) < 1 | spherec(:,3) < 1 | spherec(:,1)>fir_di | spherec(:,2)>sec_di | spherec(:,3)>thi_di);
         spherec (row_ind, :) = [];
         eachspherec_by_trial = nan(length(spherec(:,1)), count_trialtype);
        
         
-        for trialtype_th = 1:count_trialtype %¶ÔÃ¿¸öÊÔ´ÎµÄbeta
+        for trialtype_th = 1:count_trialtype %å¯¹æ¯ä¸ªè¯•æ¬¡çš„beta
             ima = output_table{trialtype_th,1};
             for ith = 1:length(spherec(:,1))
-                eachspherec_by_trial(ith, trialtype_th) = ima(spherec(ith,1), spherec(ith,2), spherec(ith,3));%64¸öÊÔ´ÎµÄÇòÒ»Î¬»¯Ö®ºó¸éÔÚÒ»¸ö¾ØÕóÀïÃæ
+                eachspherec_by_trial(ith, trialtype_th) = ima(spherec(ith,1), spherec(ith,2), spherec(ith,3));%64ä¸ªè¯•æ¬¡çš„çƒä¸€ç»´åŒ–ä¹‹åæåœ¨ä¸€ä¸ªçŸ©é˜µé‡Œé¢
             end
         end
         eachspherec_by_trial(find(isnan(eachspherec_by_trial(:,1)) | eachspherec_by_trial(:,1)==0),:)=[];
@@ -42,7 +42,7 @@ for nsub = [2:5 7:10 12:17]
             corr_3d_array(:,:,voxel_index) = nan(count_trialtype, count_trialtype);
         else
             [rho,pval] = corr(eachspherec_by_trial, 'Type','Pearson');
-            t_rho = 0.5 * (log((1+rho)./(1-rho)));%Õâ¸ö×ª»»ÊÇ²»ÊÇÎªÁË·Å´órhoµÄ±ä»¯¡­¡­Ö±½ÓÓÃrhoÄâºÏbetaºÃĞ¡µÄ
+            t_rho = 0.5 * (log((1+rho)./(1-rho)));%è¿™ä¸ªè½¬æ¢æ˜¯ä¸æ˜¯ä¸ºäº†æ”¾å¤§rhoçš„å˜åŒ–â€¦â€¦ç›´æ¥ç”¨rhoæ‹Ÿåˆbetaå¥½å°çš„
             
             corr_3d_array(:,:,voxel_index) = t_rho;
            
