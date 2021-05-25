@@ -6,7 +6,7 @@ try
     %%participan information
     getsubinfo;
     
-    %%Ê±¼ä²ÎÊı£¬±ãÓÚµ÷ÊÔ
+    %%æ—¶é—´å‚æ•°ï¼Œä¾¿äºè°ƒè¯•
     T_long_fixation=2;
     T_object=0.8;
     T_blank=0.2;
@@ -50,11 +50,11 @@ try
     Screen('Preference', 'SkipSyncTests', 1);
     HideCursor;
     % InitializeMatlabOpenGL;
-    [win,wrect]=Screen('OpenWindow',0,BackgroundColor);%´ò¿ª´°¿Ú£¬µ÷½ÚÑÕÉ«£¬È«ÆÁÊµÑé
+    [win,wrect]=Screen('OpenWindow',0,BackgroundColor);%æ‰“å¼€çª—å£ï¼Œè°ƒèŠ‚é¢œè‰²ï¼Œå…¨å±å®éªŒ
     Screen('BlendFunction', win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);%%%%%%%%%%%%%%%%%%%%%%%
-    Screen('TextFont',win,'Calibri');%ÉèÖÃ×ÖÌå
-    Screen('TextSize',win,28);%ÉèÖÃ×ÖºÅ
-    %ÎªÁËÌá¸ßÊ±¼ä¾«¶È
+    Screen('TextFont',win,'Calibri');%è®¾ç½®å­—ä½“
+    Screen('TextSize',win,28);%è®¾ç½®å­—å·
+    %ä¸ºäº†æé«˜æ—¶é—´ç²¾åº¦
     IFI=Screen('GetFlipInterval', win)/2;
     topPriorityLevel=MaxPriority(win);
     Priority(topPriorityLevel);
@@ -62,18 +62,18 @@ try
     %%define items
     ItemForMTL2(3)
     
-    %     %%Ëæ»úÖÖ×Ó
+    %     %%éšæœºç§å­
     %     rng shuffle;
     %
     %%defien parameters
     x=wrect(3);
     y=wrect(4);
-    dx=x/8;   %dxÊÇÏîÄ¿¾àÀëÖĞĞÄµãµÄºáÏò¾àÀë
-    dy=y/4; %dyÊÇÔ²ÅÌ¾àÀëÖĞĞÄµãµÄ¾àÀë76
+    dx=x/8;   %dxæ˜¯é¡¹ç›®è·ç¦»ä¸­å¿ƒç‚¹çš„æ¨ªå‘è·ç¦»
+    dy=y/4; %dyæ˜¯åœ†ç›˜è·ç¦»ä¸­å¿ƒç‚¹çš„è·ç¦»76
     Cy=y/2;
-    RI=50;  %ÏîÄ¿´óĞ¡
-    RC=40;  %Ô²µÄ´óĞ¡
-    VerOrHor=mod(SubNumber,8); %1-4ÊÇÊúÖ±µÄ£¬5-8ÊÇË®Æ½µÄ
+    RI=50;  %é¡¹ç›®å¤§å°
+    RC=40;  %åœ†çš„å¤§å°
+    VerOrHor=mod(SubNumber,8); %1-4æ˜¯ç«–ç›´çš„ï¼Œ5-8æ˜¯æ°´å¹³çš„
     DiskSetting=mod(SubNumber,4);
     
     %%define trial coditions
@@ -85,11 +85,11 @@ try
     LocationSetting(5:8,1)=2;
     LocationSetting(9:12,1)=3;
     LocationSetting(13:16,1)=4;
-    %1-4ÁĞ·Ö±ğÊÇ£¬ÏîÄ¿£¬Î»ÖÃ£¬½»»»£¬Ê±¼ä
+    %1-4åˆ—åˆ†åˆ«æ˜¯ï¼Œé¡¹ç›®ï¼Œä½ç½®ï¼Œäº¤æ¢ï¼Œæ—¶é—´
     TrialCondition=[ObjectSetting,repmat(LocationSetting,4,1),repmat([1;1;2;2],16,1),repmat([1;2],32,1)];
     TrialCondition=TrialCondition(randperm(size(TrialCondition,1)),:);
     MatchSetting=zeros(64,1);
-    %10¸öobject´íÎó£¨1£©£¬10¸ölocation´íÎó£¨2£©£¬12¸öexchange´íÎó£¨3£©
+    %10ä¸ªobjecté”™è¯¯ï¼ˆ1ï¼‰ï¼Œ10ä¸ªlocationé”™è¯¯ï¼ˆ2ï¼‰ï¼Œ12ä¸ªexchangeé”™è¯¯ï¼ˆ3ï¼‰
     MatchSetting(33:42,1)=1;
     MatchSetting(43:52,1)=2;
     MatchSetting(53:64,1)=3;
@@ -98,10 +98,10 @@ try
     TiltedOrNot=repmat(TiltedOrNot,16,1);
     TiltedOrNot=TiltedOrNot(randperm(size(TiltedOrNot,1)),:);
     TrialCondition=[TrialCondition,TiltedOrNot,MatchSetting];
-    %µÚ5ÁĞÊÇÇãĞ±²»ÇãĞ±£¬ÍêÈ«Ëæ»ú£¬²¢ÇÒ1-64ºÍ65-128ÍêÈ«Ò»Ñù
-    %Ç°64¸öÊÇÕıÈ·µÄ£¬ºó64¸ö²»ÕıÈ·£¬ÕâÑùÕıÈ·ºÍ²»ÕıÈ·¾Í×öºÃÁËcounterbalance
+    %ç¬¬5åˆ—æ˜¯å€¾æ–œä¸å€¾æ–œï¼Œå®Œå…¨éšæœºï¼Œå¹¶ä¸”1-64å’Œ65-128å®Œå…¨ä¸€æ ·
+    %å‰64ä¸ªæ˜¯æ­£ç¡®çš„ï¼Œå64ä¸ªä¸æ­£ç¡®ï¼Œè¿™æ ·æ­£ç¡®å’Œä¸æ­£ç¡®å°±åšå¥½äº†counterbalance
     
-    %Éè¼Æ°´¼ü
+    %è®¾è®¡æŒ‰é”®
     ChoiceButton=repmat([1,2;2,1],32,1);
     
     %%test screen
@@ -134,7 +134,7 @@ try
     end
     
     
-    %Î»ÖÃ¾ØÕó£¬Í¬Ê±¿¼ÂÇ£¬ÉèÖÃË®Æ½»¹ÊÇÊúÖ±
+    %ä½ç½®çŸ©é˜µï¼ŒåŒæ—¶è€ƒè™‘ï¼Œè®¾ç½®æ°´å¹³è¿˜æ˜¯ç«–ç›´
     if (0 <VerOrHor) &&(VerOrHor<5)
         Position=[x/2-dx,Cy-dy,x/2+dx,Cy-dy;...
             x/2-dx,Cy+dy,x/2+dx,Cy+dy;...
@@ -146,11 +146,11 @@ try
             x/2-dx,Cy-dy,x/2+dx,Cy+dy;...
             x/2-dx,Cy+dy,x/2+dx,Cy-dy];
     end
-    %ÔÚÕâÀïÈ·¶¨±»ÊÔ¼äµÄÔ²ÅÌÉè¼Æ
-    %µÚÒ»¸ö±»ÊÔ£¬ÏÈÉÏºóÏÂ£¬ÏÈÉîºóÇ³
-    %µÚ¶ş¸ö±»ÊÔ£¬ÏÈÉÏºóÏÂ£¬ÏÈÇ³ºóÉî
-    %µÚÈı¸ö±»ÊÔ£¬ÏÈÏÂºóÉÏ£¬ÏÈÉîºóÇ³
-    %µÚËÄ¸ö±»ÊÔ£¬ÏÈÏÂºóÉÏ£¬ÏÈÇ³ºóÉî
+    %åœ¨è¿™é‡Œç¡®å®šè¢«è¯•é—´çš„åœ†ç›˜è®¾è®¡
+    %ç¬¬ä¸€ä¸ªè¢«è¯•ï¼Œå…ˆä¸Šåä¸‹ï¼Œå…ˆæ·±åæµ…
+    %ç¬¬äºŒä¸ªè¢«è¯•ï¼Œå…ˆä¸Šåä¸‹ï¼Œå…ˆæµ…åæ·±
+    %ç¬¬ä¸‰ä¸ªè¢«è¯•ï¼Œå…ˆä¸‹åä¸Šï¼Œå…ˆæ·±åæµ…
+    %ç¬¬å››ä¸ªè¢«è¯•ï¼Œå…ˆä¸‹åä¸Šï¼Œå…ˆæµ…åæ·±
     if (0 < VerOrHor) &&(VerOrHor<5)
         if DiskSetting==1
             Disk1Color=DarkerColor;
@@ -207,12 +207,12 @@ try
     % exit program if this fails.
     initializedummy=0;
     if initializedummy~=1 %
-        if Eyelink('initialize') ~= 0 %%%%%%%%%%%%%%%µÈÓÚ0µÄÊ±ºòÕı³£³õÊ¼»¯
+        if Eyelink('initialize') ~= 0 %%%%%%%%%%%%%%%ç­‰äº0çš„æ—¶å€™æ­£å¸¸åˆå§‹åŒ–
             fprintf('error in connecting to the eye tracker');
             return;
         end
     else
-        Eyelink('initializedummy');   %%%%%%%%%%%%%%%%%½«ÑÛ¶¯ÒÇÉè³ÉÑÆÄ£Ê½£¬ÔÚ²»µ÷ÓÃÑÛ¶¯µÄÇé¿öÏÂµ÷ÊÔÊµÑé³ÌĞò
+        Eyelink('initializedummy');   %%%%%%%%%%%%%%%%%å°†çœ¼åŠ¨ä»ªè®¾æˆå“‘æ¨¡å¼ï¼Œåœ¨ä¸è°ƒç”¨çœ¼åŠ¨çš„æƒ…å†µä¸‹è°ƒè¯•å®éªŒç¨‹åº
     end
     edfFile=ForEyelink;
     
@@ -223,7 +223,7 @@ try
     %%get start
     for SessionN=1:2
         T_ITI=8;
-        if SessionN==2%%%ĞİÏ¢
+        if SessionN==2%%%ä¼‘æ¯
             DrawFormattedText(win,'Now you can take a rest\n\npress 1 to continue','center',Cy,[0 0 0]);
             Screen('Flip',win);
             while 1
@@ -250,11 +250,11 @@ try
             end
         end
         
-        %²»Í¬session´òÂÒtrialË³Ğò
+        %ä¸åŒsessionæ‰“ä¹±trialé¡ºåº
         TrialCondition=TrialCondition(randperm(size(TrialCondition,1)),:);
         ChoiceButton=ChoiceButton(randperm(size(ChoiceButton,1)),:);
         
-        %%»¹Ã»ÓĞ¿ª¼ÇÂ¼½á¹ûµÄ¾ØÕóºÍ¼ÇÂ¼Ê±¼äµÄ¾ØÕó
+        %%è¿˜æ²¡æœ‰å¼€è®°å½•ç»“æœçš„çŸ©é˜µå’Œè®°å½•æ—¶é—´çš„çŸ©é˜µ
         Result=(-1)*ones(65,13);
         TimePoint=zeros(65,10);
         
@@ -263,8 +263,8 @@ try
         while 1
             [keyIsDown, secs1, keyCode] = KbCheck;
             
-            if keyCode(startup) % 's'¼ü´¥·¢
-                Onset=secs1; %¼ÆÊ±Æğµã
+            if keyCode(startup) % 's'é”®è§¦å‘
+                Onset=secs1; %è®¡æ—¶èµ·ç‚¹
                 TimePoint(1,1)=Onset;
                 break;
             elseif keyCode(stop)==1
@@ -273,12 +273,12 @@ try
             
         end
         
-        %¼ÓÒ»¸ö8ÃëµÄ¿Õ°×
+        %åŠ ä¸€ä¸ª8ç§’çš„ç©ºç™½
         
         t_ITI=Screen('Flip',win);
         TimePoint(1,2)= t_ITI-Onset;
         
-        %%¿ªÊ¼ÊµÑé
+        %%å¼€å§‹å®éªŒ
         for m=1:64
             %% STEP 7.3 Start recording in a trial-by-trial manner.
             % start recording eye position (preceded by a short pause so that
@@ -292,14 +292,14 @@ try
             % record a few samples before we actually start displaying
             % otherwise you may lose a few msec of data
             
-            ItemSet=TrialCondition(m,1);%Ñ¡¶¨ÒªÓÃµÄÏîÄ¿ĞĞ
+            ItemSet=TrialCondition(m,1);%é€‰å®šè¦ç”¨çš„é¡¹ç›®è¡Œ
             TemporalOrder=TrialCondition(m,4);
             PlaceSet=TrialCondition(m,2);
             LocationExchange=TrialCondition(m,3);
             Tilted=TrialCondition(m,5);
             MatchOrNot=TrialCondition(m,6);
-            if LocationExchange==1%Èç¹û²»½»»»£¬ÏîÄ¿1ÔÚÎ»ÖÃ1£¬ÏîÄ¿2ÔÚÎ»ÖÃ2£»Èç¹û½»»»£¬ÏîÄ¿1ÔÚÎ»ÖÃ2£¬ÏîÄ¿2ÔÚÎ»ÖÃ1.
-                %ËùÒÔÔÙ¿¼ÂÇ¹ılocation-exchangeÖ®ºó£¬ÏîÄ¿ºÍÎ»ÖÃµã¾ÍÒÑ¾­°ó¶¨ÁË
+            if LocationExchange==1%å¦‚æœä¸äº¤æ¢ï¼Œé¡¹ç›®1åœ¨ä½ç½®1ï¼Œé¡¹ç›®2åœ¨ä½ç½®2ï¼›å¦‚æœäº¤æ¢ï¼Œé¡¹ç›®1åœ¨ä½ç½®2ï¼Œé¡¹ç›®2åœ¨ä½ç½®1.
+                %æ‰€ä»¥å†è€ƒè™‘è¿‡location-exchangeä¹‹åï¼Œé¡¹ç›®å’Œä½ç½®ç‚¹å°±å·²ç»ç»‘å®šäº†
                 Rectx1=Position(PlaceSet,1);
                 Recty1=Position(PlaceSet,2);
                 Rectx2=Position(PlaceSet,3);
@@ -311,9 +311,9 @@ try
                 Recty2=Position(PlaceSet,2);
             end
             
-            %¿ªÊ¼³ÊÏÖ
-            %µÚÒ»Ä»£¬×¢ÊÓµã
-            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%×¢ÊÓµãµÄ×ø±êºóÃæÔÙ¸Ä
+            %å¼€å§‹å‘ˆç°
+            %ç¬¬ä¸€å¹•ï¼Œæ³¨è§†ç‚¹
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%æ³¨è§†ç‚¹çš„åæ ‡åé¢å†æ”¹
             Screen('DrawLine',win,FixationColor,x/2-10,Cy,x/2+10,Cy,2 );
             Screen('DrawLine',win,FixationColor,x/2,Cy-10,x/2,Cy+10,2 );
             t_fixation1=Screen('Flip',win,t_ITI+T_ITI-IFI);
@@ -322,7 +322,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_fix1_onset']);
             %
             
-            %µÚ¶şÄ»£¬³ÊÏÖºìÉ«Ô²ÅÌ
+            %ç¬¬äºŒå¹•ï¼Œå‘ˆç°çº¢è‰²åœ†ç›˜
             Screen('FillOval',win,Disk1Color,Disk1Rect);
             t_disk1=Screen('Flip',win,t_fixation1+T_long_fixation-IFI);
             TimePoint(m+1,2)= t_disk1-Onset;
@@ -330,7 +330,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_disk1_onset']);
             %
             
-            %¿Õ°×ÆÁ
+            %ç©ºç™½å±
             
             t_blank1=Screen('Flip',win,t_disk1+T_object-IFI);
             %
@@ -338,7 +338,7 @@ try
             %
             
             TimePoint(m+1,3)=t_blank1-Onset;
-            %×¢ÊÓµã
+            %æ³¨è§†ç‚¹
             Screen('DrawLine',win,FixationColor,x/2-10,Cy,x/2+10,Cy,2 );
             Screen('DrawLine',win,FixationColor,x/2,Cy-10,x/2,Cy+10,2 );
             t_fixation2=Screen('Flip',win,t_blank1+T_blank-IFI);
@@ -347,8 +347,8 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_fixation2_onset']);
             %
             
-            %µÚÈıÄ»£¬³ÊÏÖµÚÒ»¸öÎïÌå,
-            %Èç¹ûTemporal=1£¬¾ÍÏÈ³ÊÏÖÏîÄ¿1
+            %ç¬¬ä¸‰å¹•ï¼Œå‘ˆç°ç¬¬ä¸€ä¸ªç‰©ä½“,
+            %å¦‚æœTemporal=1ï¼Œå°±å…ˆå‘ˆç°é¡¹ç›®1
             if TemporalOrder==1
                 Screen('DrawTexture',win,Item{ItemSet,1},[],[Rectx1-RI,Recty1-RI,Rectx1+RI,Recty1+RI]);
             else
@@ -360,7 +360,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_item1_onset']);
             %
             
-            %¿Õ°×ÆÁ
+            %ç©ºç™½å±
             
             t_blank2=Screen('Flip',win,t_item1+T_object-IFI);
             TimePoint(m+1,6)=t_blank2-Onset;
@@ -368,7 +368,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_blank2_onset']);
             %
             
-            %×¢ÊÓµã
+            %æ³¨è§†ç‚¹
             Screen('DrawLine',win,FixationColor,x/2-10,Cy,x/2+10,Cy,2 );
             Screen('DrawLine',win,FixationColor,x/2,Cy-10,x/2,Cy+10,2 );
             t_fixation3=Screen('Flip',win,t_blank2+T_blank-IFI);
@@ -377,7 +377,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_fixation3_onset']);
             %
             
-            %³ÊÏÖµÚ¶ş¸öÎïÌå
+            %å‘ˆç°ç¬¬äºŒä¸ªç‰©ä½“
             if TemporalOrder==1
                 Screen('DrawTexture',win,Item{ItemSet,2},[],[Rectx2-RI,Recty2-RI,Rectx2+RI,Recty2+RI]);
             else
@@ -389,7 +389,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_item2_onset']);
             %
             
-            %¿Õ°×ÆÁ
+            %ç©ºç™½å±
             
             t_blank3=Screen('Flip',win,t_item2+T_object-IFI);
             TimePoint(m+1,9)=t_blank3-Onset;
@@ -397,7 +397,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_blank3_onset']);
             %
             
-            %×¢ÊÓµã
+            %æ³¨è§†ç‚¹
             Screen('DrawLine',win,FixationColor,x/2-10,Cy,x/2+10,Cy,2 );
             Screen('DrawLine',win,FixationColor,x/2,Cy-10,x/2,Cy+10,2 );
             t_fixation4=Screen('Flip',win,t_blank3+T_blank-IFI);
@@ -406,7 +406,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_fixation4_onset']);
             %
             
-            %°×É«Ô²ÅÌ
+            %ç™½è‰²åœ†ç›˜
             Screen('FillOval',win,Disk2Color,Disk2Rect);
             t_disk2=Screen('Flip',win,t_fixation4+T_fixation-IFI);
             TimePoint(m+1,11)=t_disk2-Onset;
@@ -414,7 +414,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_disk2_onset']);
             %
             
-            %¿Õ°×ÆÁ
+            %ç©ºç™½å±
             
             t_blank4=Screen('Flip',win,t_disk2+T_object-IFI);
             TimePoint(m+1,12)=t_blank4-Onset;
@@ -422,7 +422,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_blank4_onset']);
             %
             
-            %×¢ÊÓµã
+            %æ³¨è§†ç‚¹
             Screen('DrawLine',win,FixationColor,x/2-10,Cy,x/2+10,Cy,2 );
             Screen('DrawLine',win,FixationColor,x/2,Cy-10,x/2,Cy+10,2 );
             t_fixation5=Screen('Flip',win,t_blank4+T_blank-IFI);
@@ -431,8 +431,8 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_fixation5_onset']);
             %
             
-            %×îºóÒ»¸ö³¤¼ä¸ô
-            %¿Õ°×ÆÁ
+            %æœ€åä¸€ä¸ªé•¿é—´éš”
+            %ç©ºç™½å±
             T_long_delay=4+2*rand;
             t_delay_blank=Screen('Flip',win,t_fixation5+T_fixation-IFI);
             TimePoint(m+1,14)=t_delay_blank-Onset;
@@ -440,7 +440,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_delay_blank_onset']);
             %
             
-            %×¢ÊÓµã
+            %æ³¨è§†ç‚¹
             Screen('DrawLine',win,FixationColor,x/2-10,Cy,x/2+10,Cy,2 );
             Screen('DrawLine',win,FixationColor,x/2,Cy-10,x/2,Cy+10,2 );
             t_delay_fixation=Screen('Flip',win,t_delay_blank+T_long_delay-IFI);
@@ -449,7 +449,7 @@ try
             %
             TimePoint(m+1,15)=t_delay_fixation-Onset;
             
-            %%³ÊÏÖprobe screen
+            %%å‘ˆç°probe screen
             if MatchOrNot==1
                 while 1
                     WrongItemSet=randi([1,4]);
@@ -469,8 +469,8 @@ try
                 Rectx1=Position(PlaceSet,1);
                 Recty1=Position(PlaceSet,2);
             elseif MatchOrNot==3
-                if LocationExchange==2%Èç¹û²»½»»»£¬ÏîÄ¿1ÔÚÎ»ÖÃ1£¬ÏîÄ¿2ÔÚÎ»ÖÃ2£»Èç¹û½»»»£¬ÏîÄ¿1ÔÚÎ»ÖÃ2£¬ÏîÄ¿2ÔÚÎ»ÖÃ1.
-                    %ËùÒÔÔÙ¿¼ÂÇ¹ılocation-exchangeÖ®ºó£¬ÏîÄ¿ºÍÎ»ÖÃµã¾ÍÒÑ¾­°ó¶¨ÁË
+                if LocationExchange==2%å¦‚æœä¸äº¤æ¢ï¼Œé¡¹ç›®1åœ¨ä½ç½®1ï¼Œé¡¹ç›®2åœ¨ä½ç½®2ï¼›å¦‚æœäº¤æ¢ï¼Œé¡¹ç›®1åœ¨ä½ç½®2ï¼Œé¡¹ç›®2åœ¨ä½ç½®1.
+                    %æ‰€ä»¥å†è€ƒè™‘è¿‡location-exchangeä¹‹åï¼Œé¡¹ç›®å’Œä½ç½®ç‚¹å°±å·²ç»ç»‘å®šäº†
                     Rectx1=Position(PlaceSet,1);
                     Recty1=Position(PlaceSet,2);
                 else
@@ -479,8 +479,8 @@ try
                 end
             end
             Rotation=30*Tilted;
-            %%ÉèÖÃprobe screen
-            %Á½¸öÔ²ÅÌµÄ×ø±ê
+            %%è®¾ç½®probe screen
+            %ä¸¤ä¸ªåœ†ç›˜çš„åæ ‡
             if (0 < VerOrHor) &&(VerOrHor<5)
                 R2=((Rectx1-x/2)^2+(Recty1-Cy)^2)^0.5;
                 R1=dy/2;
@@ -496,9 +496,9 @@ try
                 WhiteRectx=x/2+R1*cosd(Rotation);
                 WhiteRecty=Cy+R1*sind(Rotation);
             end
-            %ÆäÊµÕâÀï»¹ÊÇÓ¦¸ÃÓÃdisk1ºÍdisk2£¬²»¹ı¼ÈÈ»Í¬Ê±³ÊÏÖ£¬ÒÑ¾­Ã»ÓĞÇø·ÖµÄ±ØÒªÁË£¬
-            %ËùÒÔ¾ÍÓÃredºÍwhite´úÌæÁË,redÊÇÉÏÃæÄÇ¸ö»òÕß×ó±ßÄÇ¸ö£¬whiteÊÇÏÂÃæÄÇ¸ö»òÕßÓÒ±ßÄÇ¸ö
-            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5%ÒÔy/2Îª²ÎÕÕµãµÄÄÇ¼¸¸öÎ»ÖÃ¼ÆËãÈ«²¿¶¼µÃ¸Ä
+            %å…¶å®è¿™é‡Œè¿˜æ˜¯åº”è¯¥ç”¨disk1å’Œdisk2ï¼Œä¸è¿‡æ—¢ç„¶åŒæ—¶å‘ˆç°ï¼Œå·²ç»æ²¡æœ‰åŒºåˆ†çš„å¿…è¦äº†ï¼Œ
+            %æ‰€ä»¥å°±ç”¨redå’Œwhiteä»£æ›¿äº†,redæ˜¯ä¸Šé¢é‚£ä¸ªæˆ–è€…å·¦è¾¹é‚£ä¸ªï¼Œwhiteæ˜¯ä¸‹é¢é‚£ä¸ªæˆ–è€…å³è¾¹é‚£ä¸ª
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5%ä»¥y/2ä¸ºå‚ç…§ç‚¹çš„é‚£å‡ ä¸ªä½ç½®è®¡ç®—å…¨éƒ¨éƒ½å¾—æ”¹
             if (0 < VerOrHor) &&(VerOrHor<5)
                 if PlaceSet==4
                     if Rectx1>x/2
@@ -639,7 +639,7 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_ProbeScreen_onset']);
             %
             
-            %%ÉèÖÃchoice screen
+            %%è®¾ç½®choice screen
             Choice=sprintf('Yes  %d\n\nNo  %d',ChoiceButton(m,1),ChoiceButton(m,2));
             DrawFormattedText(win,Choice,'center',Cy,[0 0 0]);
             t_ChoiceScreen=Screen('Flip',win,t_ProbeScreen+T_probe_screen-IFI);
@@ -759,8 +759,8 @@ try
             Eyelink('Message', ['trial_' num2str(m) '_ChoiceConfidence_onset']);
             %
             %
-            %%Â¼ÈëÕâ¸öÊÔ´ÎµÄÊı¾İ
-            %½á¹û¾ØÕóresult£¬1-object,2-location,3-exchange,4-temporal,5-tilted,6-match
+            %%å½•å…¥è¿™ä¸ªè¯•æ¬¡çš„æ•°æ®
+            %ç»“æœçŸ©é˜µresultï¼Œ1-object,2-location,3-exchange,4-temporal,5-tilted,6-match
             %or not,7-rotation,8-performance,9-reaction time
             Result(m,1:6)=TrialCondition(m,1:6);
             Result(m,7)=Rotation;
@@ -768,12 +768,12 @@ try
             Result(m,11)=ChoiceButton(m,1);
             %%performance
             Result(65,1)=mean(Result(1:m,8));  %performance
-            Result(65,2)=mean(Result(1:m,9));  %·´Ó¦Ê±
-            Result(65,3)=std(Result(1:m,9));  %·´Ó¦Ê±µÄ±ê×¼²î
+            Result(65,2)=mean(Result(1:m,9));  %ååº”æ—¶
+            Result(65,3)=std(Result(1:m,9));  %ååº”æ—¶çš„æ ‡å‡†å·®
             save(['result_for_Sub' num2str(SubNumber) '_session',num2str(SessionN),'.mat'],'Result');
             
             %%ITI
-            imgArray=255*rand(y,x); % Éú´æÑ©»¨ÔëÒôÎÆÀí
+            imgArray=255*rand(y,x); % ç”Ÿå­˜é›ªèŠ±å™ªéŸ³çº¹ç†
             texid=Screen('MakeTexture',win,imgArray);
             Screen('DrawTexture',win,texid);
             t_ITI=Screen('Flip',win);
@@ -803,13 +803,13 @@ try
         end
     end
     
-    %ÕâÊÇ½áÊø²¿·Ö`
+    %è¿™æ˜¯ç»“æŸéƒ¨åˆ†`
     %% STEP 8
     % End of Experiment; close the file first
     % close graphics window, close data file and shut down tracker
     
     
-    %ÑÛ¶¯½áÊø
+    %çœ¼åŠ¨ç»“æŸ
     % End of Experiment; close the file first, close graphics window, close data file and shut down tracker
     Eyelink('Command', 'set_idle_mode');
     WaitSecs(0.5);
@@ -820,7 +820,7 @@ try
         fprintf('Receiving data file ''%s''\n', edfFile );
         status=Eyelink('ReceiveFile');
         if status > 0
-            fprintf('ReceiveFile status %d\n', status);%status ÎªÎÄ¼ş´óĞ¡£¬Õâ¾ä½«·µ»ØÎÄ¼ş´óĞ¡£¬0±íÊ¾´«Êä¹ı³Ì±»È¡Ïû£¬¸ºÖµ±íÊ¾´íÎó´úÂë
+            fprintf('ReceiveFile status %d\n', status);%status ä¸ºæ–‡ä»¶å¤§å°ï¼Œè¿™å¥å°†è¿”å›æ–‡ä»¶å¤§å°ï¼Œ0è¡¨ç¤ºä¼ è¾“è¿‡ç¨‹è¢«å–æ¶ˆï¼Œè´Ÿå€¼è¡¨ç¤ºé”™è¯¯ä»£ç 
         end
         if 2==exist(edfFile, 'file')
             fprintf('Data file ''%s'' can be found in ''%s''\n', edfFile, pwd );
