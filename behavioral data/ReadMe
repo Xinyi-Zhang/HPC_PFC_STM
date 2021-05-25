@@ -1,3 +1,3 @@
-Raw data in .m for each participant. Summarized data in .xlsx for all participants included in the analysis.
+Raw data in .mat for each participant. Summarized data in .xlsx for all participants included in the analysis.
 
 For raw data, column 1-12 indicate: object ID, location, location exchange or not, temporal order of two obejcts, rotation mode, match or not mach, rotation degree, correct or not, reaction time, choice button ID, button ID that represents 'Yes', correct button ID
