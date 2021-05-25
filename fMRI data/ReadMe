@@ -1,0 +1,3 @@
+Activation map in .mat. ROI summary in .xlsx.
+
+Activation map matrix can be transformed to .nii by the function spm_write_vol in matlab.
