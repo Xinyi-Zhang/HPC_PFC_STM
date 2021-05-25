@@ -74,7 +74,7 @@ for nROI = 1
             %second, get voxel-wise activation from each subject of all trials
             image_ROI = spm_vol(['E:\zhang xinyi\fMRI\a_result\RSA_fixation_separate\anatomical_ROI\ROI\lPRC_sub',num2str(nsub),'\s',num2str(nsess),'\rwr',ROI_name{nROI},'.nii']);
             matrix_ROI = spm_read_vols(image_ROI);
-            [fir_di, sec_di, thi_di] = size(matrix_ROI);%??????×é
+            [fir_di, sec_di, thi_di] = size(matrix_ROI);%??????Ã—Ã©
             [d1, d2, d3] = ind2sub([fir_di, sec_di, thi_di],find(matrix_ROI>0));
             voxel_array = [d1, d2, d3];
             count_voxel = length(voxel_array);
